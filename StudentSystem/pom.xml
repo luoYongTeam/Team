@@ -7,6 +7,100 @@
     <groupId>StudentSystem</groupId>
     <artifactId>StudentSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!-- 配置maven的常规属性 -->
+    <properties>
+        <!-- 配置控制台的编码格式 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 配置控制台输出参数的编码格式 -->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
+        <!-- 指定依赖中的版本号-->
+        <junit.version>4.12</junit.version>
+        <json.version>2.7</json.version>
+        <servlet.version>3.0.1</servlet.version>
+        <ojdbc.version>11.2.0.4</ojdbc.version>
+        <jsp.version>2.0</jsp.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <hibernate.version>5.2.5.Final</hibernate.version>
+    </properties>
+    <!-- 配置maven插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <!-- 编译插件的名称 -->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!--编译插件的配置信息  -->
+                <configuration>
+                    <target>1.8</target>
+                    <source>1.8</source>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 项目打包插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <warSourceDirectory>web</warSourceDirectory>
+                    <webXml>web\WEB-INF\web.xml</webXml>
+                </configuration>
 
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 配置依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+        <!-- oracle驱动,这个驱动是从本地仓库直接依赖的 -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${ojdbc.version}</version>
+        </dependency>
+        <!-- 依赖配置tocat -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+
+        <!-- 配置hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
