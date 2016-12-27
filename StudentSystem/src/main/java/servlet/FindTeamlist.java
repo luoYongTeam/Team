@@ -28,6 +28,6 @@ public class FindTeamlist extends HttpServlet {
         String json = new Gson().toJson(list);
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(json);
-
+        System.out.println(json);
     }
 }
