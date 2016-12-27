@@ -14,10 +14,10 @@
             <property name="hibernate.connection.username" value="luoyong" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+           <!-- <property name="hibernate.hbm2ddl.auto" value="update" />-->
 
             <!-- 配置C3P0连接池属性 -->
-            <!-- 指定hibernate使用连接池实现方，
+            <!-- 指定hibernate使用!连接池实现方，
                   不同的连接池有不同的实现，这里使用C3P0连接池 -->
             <property name="hibernate.connection.provider_class" value="org.hibernate.c3p0.internal.C3P0ConnectionProvider"/>
             <!-- 最大连接数 -->

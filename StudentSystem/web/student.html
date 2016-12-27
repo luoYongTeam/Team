@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	 <link rel="stylesheet" href="css/bootstrap.min.css">
+	 <link rel="stylesheet" href="css/pagination.css"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+     <script src="js/student.js"></script>
+     
+    <script>
+$(function(){
+		findAll();
+		add();
+		del();
+
+});
+
+
+</script>
+</head>
+<body>
+		<div class="container" style="width:70%">
+		<h2>学生管理</h2>
+		<input id="del" type="button" class="btn btn-danger btn-sm" value="删除">
+		<input id="add" type="button" class="btn btn-danger btn-sm" value="新增">
+			<form id="tableForm">
+			<table id="tab" class="table table-border table-hover table-condensed">
+				<tr>
+					<th>选择</th>
+					<th>学员姓名</th>
+					<th>学员年龄</th>
+					<th>学员性别</th>
+					<th>身份证号</th>
+					<th>学员班级</th>
+					<th>专选课程</th>
+				<th>操作</th>
+		</tr>
+				
+			</table>	
+				<!-- 分页控件 -->
+		<div id="page" align="right"></div>	
+			</form>
+		</div>
+		
+	<div class="modal fade" id="addview">
+		<!-- 模式对话框的主体，包括一些遮罩层样式 -->
+	<div class="modal-dialog">
+			<!-- 这个div将涵盖对话框的内容，内容分为三部分，头主体，尾部 -->
+		<div class="modal-content">
+			<!-- 头部 -->
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal" aria-lable="Closes" value="×">
+					<span aria-hidden="type">&times;</span>
+				</button>
+				<h4 class="model-title">添加课程</h4>
+			</div>
+			<div class="modal-body">
+				<form id="f1">
+					<div class="form-group">
+						<label class="control-label">学员姓名</label>
+						<input type="text" class="form-control" name="stuName"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员年龄</label>
+						<input type="text" class="form-control" name="age"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员性别</label>
+						<input type="text" class="form-control" name="sex"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">身份证号</label>
+						<input type="text" class="form-control" name="card"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员班级</label>
+						<select id="teamType" name="team" class="form-control">
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">专选课程</label>
+						<div id="sub" class="form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<input id="delete" type="button" class="btn btn-default" value="关闭" data-dismiss="modal"/>
+				<input id="save" type="button" class="btn btn-primary" value="保存" data-dismiss="modal"/>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	
+	
+	<!-- 书籍修改对话框 -->
+	<div class="modal fade" id="updateview">
+	
+		<!-- 模式对话框的主体，包括一些遮罩层样式 -->
+		<div class="modal-dialog">
+		
+			
+			<!-- 这个div将涵盖对话框的内容，内容分为三部分，内容头部、内容主体、内容尾部 -->
+			<div class="modal-content">
+				<!-- 内容头部 -->
+				<div class="modal-header">
+					<!-- 关闭按钮 -->
+					<button  class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<!-- 标题 -->
+					<h3 class="model-title">修改书籍</h3>
+				</div>
+				
+				<!-- 内容主体 -->
+				<div class="modal-body">
+				<!-- 隐藏域 -->
+				
+					<form id="f2">
+					<input type="hidden" name="sid3" id="sid3">
+					<div class="form-group">
+						<label class="control-label">学员姓名</label>
+						<input type="text" class="form-control" name="stuName1" id="stuName"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员年龄</label>
+						<input type="text" class="form-control" name="age1" id="age"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员性别</label>
+						<input type="text" class="form-control" name="sex1" id="sex"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">身份证号</label>
+						<input type="text" class="form-control" name="card1" id="card"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">学员班级</label>
+						<select  name="team1" class="form-control" id="teamName">
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">专选课程</label>
+						<div id="subject" class="form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+
+				
+				<!-- 内容尾部 -->
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal"/>
+					<input id="update" type="button" class="btn btn-primary" value="保存" data-dismiss="modal"/>
+				</div>
+			</div>
+		</div>
+	</div>	
+		
+</body>
+</html>

@@ -56,7 +56,19 @@ public class Student {
     public void setSex(String sex) {
         this.sex = sex;
     }
-@OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "student")
+    // 一对一关联身份证
+    // cascade设置级联操作
+    // CascadeType.PERSIST级联保存
+    // CascadeType.REMOVE级联删除
+    // CascadeType.MERGE级联更新
+    // CascadeType.REFRESH级联刷新
+    // CascadeType.ALL所有级联操作
+
+    // mappedBy属性指定将关联关系的维护全交由给对方，相当于hibernate中的inverse
+    // 它的值是指定对方关联自己的属性名。
+    // （注意：只有双向关联的情况才需要指定，且只需要在任意一遍指定即可）
+
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "student")
   @JoinColumn(name = "card_id")
     public Card getCard() {
         return card;

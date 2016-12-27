@@ -82,9 +82,9 @@ public class BaseDao<T> {
 	//查出列表
 	public List<T> findList(Class<T> entityClass){
 		//编写jpql语句
-		String jpql="from"+entityClass.getName();
+		String jpql="from "+entityClass.getName();
 		//获得EntityManager对象
-		EntityManager em=HibernateUtil.getEntityManager();
+		EntityManager em = HibernateUtil.getEntityManager();
 		//开启事务
 		em.getTransaction().begin();
 		List<T> list=null;
