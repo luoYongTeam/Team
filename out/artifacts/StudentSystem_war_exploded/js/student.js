@@ -25,7 +25,6 @@ function findPageList(pageNum){
 function addTable(list){
 	$("#tab tr:not(:first)").empty();
 	$.each(list,function(index, obj){
-
 		var subjects = "";
 		$.each(obj.subjects,function(index1,obj1){
 			var type1 = obj1.subName==undefined ? "" : obj1.subName;

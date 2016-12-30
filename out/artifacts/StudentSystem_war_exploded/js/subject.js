@@ -2,15 +2,28 @@
 
 //查询全部数据
 function findAllSubject(){
-	$.get("findSubjectlist",function(result){
-		addTable(result);		
+	$.get("findSubjectlist",{"pageNum":1},function(result){
+		addTable(result.list);
+        $("#page").pagination(result.rowCount,{
+            callback:findPageList,//点击页码发起的分页查询请求
+            items_per_page:result.maxResult,//每页显示多少记录
+            next_text:">",//下一页图标
+            prev_text:"<",//上一页图标
+            num_display_entries:2,//中间的主体显示页数
+            num_edge_entries:1//边缘显示页数
+        });
 		});
 }
-
+//分页查询方法 ,分页控件在调用这个方法时会传入一个当前页的下表进来
+function findPageList(pageNum){
+    $.get("findSubjectlist",{"pageNum":++pageNum},function(result){
+        addTable(result.list);
+    });
+}
 //添加表格到页面中
-function addTable(result){
+function addTable(list){
 	$("#tab tr:not(:first)").empty();
-	$.each(result,function(index, obj){
+	$.each(list,function(index, obj){
 		$("table").append(
 	"<tr>"+
 		"<td><input type='checkbox' name='subid' value='"+obj.subid+"'></td>"+
