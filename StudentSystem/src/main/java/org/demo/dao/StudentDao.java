@@ -13,23 +13,7 @@ import java.util.List;
  * Created by Administrator on 2016/12/28.
  */
 public class StudentDao extends BaseDao<Student>{
-    public List<Student> findStudentList(Class<?> studentClass){
-        String jpql = "from Student s join fetch s.card left join fetch s.team t left join fetch s.subjects ss ";
-        EntityManager em = HibernateUtil.getEntityManager();
-        //开启事务
-        em.getTransaction().begin();
-        List<Student> list = new ArrayList<>();
-        try{
-            Query query = em.createQuery(jpql);
 
-            list = query.getResultList();
-            em.getTransaction().commit();
-        }catch(Exception e){
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        }
-        return list;
-    }
     public List<Student> findList(PageBean pageBean){
         String jpql = "from Student s join fetch s.card left join fetch s.team t left join fetch s.subjects ss ";
         EntityManager em = HibernateUtil.getEntityManager();

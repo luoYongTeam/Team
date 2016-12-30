@@ -2,8 +2,11 @@ package org.demo.servlet;
 
 
 import com.google.gson.Gson;
+import org.demo.dao.StudentDao;
 import org.demo.dao.SubjectDao;
+import org.demo.entity.Student;
 import org.demo.entity.Subject;
+import org.demo.utils.PageBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +23,22 @@ import java.util.List;
 public class FindSubjectlist extends HttpServlet{
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SubjectDao dao=new SubjectDao();
-        List<Subject> list=dao.findList(Subject.class);
+        //创建PageBean对象,存放PageNum
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+
+        PageBean pageBean = new PageBean();
+        pageBean.setPageNum(pageNum);
+        SubjectDao dao = new SubjectDao();
+        Long n = dao.count();
+        int row=Integer.parseInt(String.valueOf(n));
+        pageBean.setRowCount(row);
+        List<Subject> list =dao.findList(pageBean);
+        pageBean.setList(list);
         for (Subject s: list) {
             s.setStudents(null);
         }
-        String json=new Gson().toJson(list);
+        pageBean.setList(list);
+        String json=new Gson().toJson(pageBean);
         //设置响应类型
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().println(json);

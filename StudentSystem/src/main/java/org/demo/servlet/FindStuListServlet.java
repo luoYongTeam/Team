@@ -29,7 +29,6 @@ public class FindStuListServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//创建PageBean对象,存放PageNum
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
-		System.out.println(pageNum);
 		PageBean pageBean = new PageBean();
 		pageBean.setPageNum(pageNum);
 		StudentDao dao = new StudentDao();
