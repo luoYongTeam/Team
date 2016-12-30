@@ -1,4 +1,4 @@
-package servlet;
+package org.demo.servlet;
 
 import com.google.gson.Gson;
 
@@ -27,7 +27,7 @@ public class FindTeamlist extends HttpServlet {
         }
         String json = new Gson().toJson(list);
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(json);
-        System.out.println(json);
+        response.getWriter().println(json);
+
     }
 }

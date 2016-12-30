@@ -14,7 +14,7 @@
             <property name="hibernate.connection.username" value="luoyong" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
             <property name="hibernate.show_sql" value="true" />
-           <!-- <property name="hibernate.hbm2ddl.auto" value="update" />-->
+           <property name="hibernate.hbm2ddl.auto" value="update" />
 
             <!-- 配置C3P0连接池属性 -->
             <!-- 指定hibernate使用!连接池实现方，
@@ -33,7 +33,7 @@
             <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
             <property name="hibernate.c3p0.acquire_increment" value="2"/>
             <!-- 每次都验证连接是否可用 -->
-            <property name="hibernate.c3p0.validate" value="true"/>
+           <!-- <property name="hibernate.c3p0.validate" value="true"/>-->
         </properties>
 
     </persistence-unit>

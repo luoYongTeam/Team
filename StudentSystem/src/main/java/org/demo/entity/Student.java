@@ -23,8 +23,8 @@ public class Student {
     //多对多关联课程
     private Set<Subject> subjects=new HashSet<>();
     @Id
-    @GeneratedValue(generator="s_id")
-    @GenericGenerator(name="s_id",strategy="uuid")
+
+    @Column(name="s_id")
     public String getSid() {
         return sid;
     }
@@ -68,8 +68,7 @@ public class Student {
     // 它的值是指定对方关联自己的属性名。
     // （注意：只有双向关联的情况才需要指定，且只需要在任意一遍指定即可）
 
-    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.MERGE},mappedBy = "student")
-  @JoinColumn(name = "card_id")
+    @OneToOne(cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.MERGE})
     public Card getCard() {
         return card;
     }
@@ -77,8 +76,11 @@ public class Student {
     public void setCard(Card card) {
         this.card = card;
     }
-@ManyToOne(fetch = FetchType.EAGER)
-@JoinColumn(name = "clazzid")
+/*@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "clazzid")*/
+// 多对一关联
+@ManyToOne
+@JoinColumn(name = "team_id")
     public Team getTeam() {
         return team;
     }
@@ -88,7 +90,13 @@ public class Student {
     }
     //多对多关联
     //mappedBy一方不需要指定@JoinColumn和@JoinTable注解
-    @ManyToMany(fetch=FetchType.EAGER, mappedBy="students")
+    @ManyToMany(fetch=FetchType.EAGER)
+    //多对多关联需要指定中间表,需要使用@JoinTable
+    //name指定中间表的名字,joinColumns指定自己在中间表对应的外键列
+    //inverseJoinColumns指定对方在中间表的外键列
+    @JoinTable(name="stu_sub",
+            joinColumns = @JoinColumn(name="s_id"),
+            inverseJoinColumns = @JoinColumn(name="sub_id"))
     public Set<Subject> getSubjects() {
         return subjects;
     }

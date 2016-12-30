@@ -38,9 +38,10 @@ function save(){
 	$("#save").unbind("click").on("click",function(){
 		//序列化表单
 		var params=$("#f1").serialize();
+
 		$.post("addTeamServlet",params,function(result){
-			addTable(result);
-			//location.href="team.html";
+			alert(result);
+            findAllTeam();
 		})
 	});
 }
@@ -54,8 +55,9 @@ function del(){
 				//执行删除操作
 				var params=$("#tableForm").serialize();
 				//使用ajax提交到后台
-				$.post("deleteTeam",params,function(result){
-					addTable(result);
+				$.post("deleteTeamServlet",params,function(result){
+					alert(result);
+                    findAllTeam();
 				})
 			}
 	});
@@ -67,7 +69,7 @@ function buttonClick(){
 		$("#ttt").empty();
 		$("#updateview").modal("show");
 			var tid = $(this).prop("alt"); 
-			$.get("findTeamById",{"tid":tid}, function(result){
+			$.get("findTeamByIdServlet",{"tid":tid}, function(result){
 					$("#teamid").val(result.tid);
 					$("#proName").val(result.className);
 			});
@@ -85,9 +87,10 @@ function update(){
 		//序列化表单
 		var params=$("#f2").serialize();
 		//提交到后台更新
-		$.post("updateTeam",params,function(result){
+		$.post("updateTeamServlet",params,function(result){
 			//更新列表数据
-			addTable(result);
+			alert("1"+result);
+            findAllTeam();
 		})
 	});
 }

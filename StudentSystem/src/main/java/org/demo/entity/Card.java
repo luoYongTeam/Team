@@ -17,8 +17,7 @@ public class Card {
     private Student student;
 
    @Id
-   @GeneratedValue(generator="c_id")
-   @GenericGenerator(name="c_id",strategy="uuid")
+ @Column(name="c_id")
     public String getCid() {
         return cid;
     }
@@ -39,8 +38,9 @@ public class Card {
     //一对一关联学生
     //关系维护端需要使用@JoinColumn注解，指定关联表的外键列
     //@JoinColumn只需要在关系的维护端指定即可
-    @OneToOne()
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "card")
+    @JoinColumn(name="stu_id")
+
     public Student getStudent() {
         return student;
     }
@@ -48,6 +48,7 @@ public class Card {
     public void setStudent(Student student) {
         this.student = student;
     }
+
 
 }
 

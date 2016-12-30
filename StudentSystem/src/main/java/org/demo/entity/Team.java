@@ -17,8 +17,8 @@ public class Team {
     private Set<Student> students=new HashSet<>();
 
     @Id
-    @GeneratedValue(generator="t_id")
-    @GenericGenerator(name="t_id",strategy="uuid")
+
+    @Column(name="t_id")
     public String getTid() {
         return tid;
     }

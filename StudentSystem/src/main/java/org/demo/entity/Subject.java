@@ -19,8 +19,7 @@ public class Subject {
     private Set<Student> students = new HashSet<>();
 
     @Id
-    @GeneratedValue(generator="sub_id")
-    @GenericGenerator(name="sub_id",strategy="uuid")
+    @Column(name="sub_id")
     public String getSubid() {
         return subid;
     }
@@ -39,13 +38,8 @@ public class Subject {
     }
 
     //多对多关联
-    @ManyToMany(fetch=FetchType.LAZY)
-    //多对多关联需要指定中间表,需要使用@JoinTable
-    //name指定中间表的名字,joinColumns指定自己在中间表对应的外键列
-    //inverseJoinColumns指定对方在中间表的外键列
-    @JoinTable(name="stu_sub",
-            joinColumns = @JoinColumn(name="sub_id"),
-            inverseJoinColumns = @JoinColumn(name="stu_id"))
+
+    @ManyToMany(mappedBy="subjects")
     public Set<Student> getStudents() {
         return students;
     }

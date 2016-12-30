@@ -14,8 +14,7 @@ function addTable(result){
 		$("table").append(
 	"<tr>"+
 		"<td><input type='checkbox' name='subid' value='"+obj.subid+"'></td>"+
-		"<td>"+obj.subName +"</td>"+ 
-		"<td>"+obj.readme +"</td>"+ 
+		"<td>"+obj.subName +"</td>"+
 		"<td><input  alt='"+obj.subid+"' type='button' class='btn btn-danger btn-sm' value='编辑'></td>"+
 	"</tr>");
 	
@@ -39,7 +38,9 @@ function save(){
 		//序列化表单
 		var params=$("#f1").serialize();
 		$.post("addSubjectServlet",params,function(result){
-			addTable(result);
+			alert(result);
+            findAllSubject();
+
 		})
 	});
 }
@@ -53,8 +54,9 @@ function del(){
 				//执行删除操作
 				var params=$("#tableForm").serialize();
 				//使用ajax提交到后台
-				$.post("deleteSubject",params,function(result){
-					addTable(result);
+				$.post("deleteSubjectServlet",params,function(result){
+					alert(result);
+                    findAllSubject();
 				})
 			}
 	});
@@ -67,10 +69,10 @@ function buttonClick(){
 		$("#updateview").modal("show");
 			var subid = $(this).prop("alt"); 
 			
-			$.get("findSubjectById",{"subid":subid}, function(result){
+			$.get("findSubjectByIdServlet",{"subid":subid}, function(result){
 				$("#subid").val(result.subid);
 					$("#subName").val(result.subName);
-					$("#readme").val(result.readme);
+
 			});	
 		update();
 		$("#updateview").modal("show");
@@ -85,9 +87,10 @@ function update(){
 		//序列化表单
 		var params=$("#f2").serialize();
 		//提交到后台更新
-		$.post("updateSubject",params,function(result){
-			//更新列表数据
-			addTable(result);
+		$.post("updateSubjectServlet",params,function(result){
+			alert(result);
+            findAllSubject();
+
 		})
 	});
 }
