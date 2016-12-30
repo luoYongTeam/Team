@@ -22,6 +22,7 @@ public class FindSubjectByIdServlet extends HttpServlet{
         String subid=request.getParameter("subid");
         SubjectDao dao=new SubjectDao();
         Subject subject=dao.findById(Subject.class,subid);
+        subject.setStudents(null);
         String json=new Gson().toJson(subject);
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().println(json);
